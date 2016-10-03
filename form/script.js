@@ -15,8 +15,8 @@
         var pass = passInputEl.value;
         var repass = rePassInputEl.value;
         
-        console.log(mail);
-        var namePattern = /[\w\s]+/;
+
+        var namePattern = /^[\w\s]{6,}$/;
         if(!namePattern.test(name)){
             nameInputEl.className = "inputError";
             return;
