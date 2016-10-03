@@ -1,0 +1,112 @@
+
+.wrap-form{
+    width: 450px;
+    padding: 50px;
+    border: 1px solid #DDDDDD;
+    margin: 0 auto;
+}
+.group{
+  width: 100%;
+  margin: 20px 0px;
+}
+.group label{
+  width: 30%;
+  display: inline-block;
+
+}
+.group input[type=text],.group input[type=email],.group input[type=password]{
+  width: 60%;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+ 
+.inputError{
+  box-shadow: 0 0 5px #FF0000;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #FF0000;
+    -webkit-animation: bounce 1.2s ease-out;
+    -moz-animation: bounce 800ms ease-out;
+    -o-animation: bounce 800ms ease-out;
+    animation: bounce 1.2s ease-out;
+}
+@keyframes bounce {
+	0% {
+		-webkit-transform:translateY(-100%);
+	}
+	5% {
+		-webkit-transform:translateY(-100%);
+	}
+	15% {
+		-webkit-transform:translateY(0);
+	}
+	20% {
+		-webkit-transform:translateY(-80%);
+	}
+	25% {
+		-webkit-transform:translateY(0%);
+
+	}
+	30% {
+		-webkit-transform:translateY(-70%);
+	}
+	35% {
+		-webkit-transform:translateY(0%);
+	
+	}
+	40% {
+		-webkit-transform:translateY(-60%);
+	}
+	45% {
+		-webkit-transform:translateY(0%);
+	
+	}
+	50% {
+		-webkit-transform:translateY(-50%);
+	}
+	55% {
+		-webkit-transform:translateY(0%);
+		
+	}
+	60% {
+		-webkit-transform:translateY(-30%);
+	}
+	65% {
+		-webkit-transform:translateY(0%);
+		
+	}
+	70% {
+		-webkit-transform:translateY(-15%);
+	}
+	75% {
+		-webkit-transform:translateY(0);
+		
+	}
+	80% {
+		-webkit-transform:translateY(-10%);
+	}
+	85% {
+		-webkit-transform:translateY(0);
+		
+	}
+	90% {
+		-webkit-transform:translateY(-5%);
+	}
+	95% {
+		-webkit-transform:translateY(0);
+		
+	}
+	100% {
+		-webkit-transform:translateY(0);
+	
+	}
+}
