@@ -1,0 +1,36 @@
+p,div,body{
+    margin: 0;
+    padding: 0;
+}
+
+#biCountDown div > div{
+    border-right: 1px solid #ccc;
+    min-width: 60px;
+    text-align: center;
+}
+#biCountDown div{
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    height: 40px;
+}
+#biCountDown div p:nth-of-type(1){
+    font-size: 22px;
+    font-weight: lighter;
+}
+#biCountDown div p:nth-of-type(2){
+    font-size: 10px;
+}
+#biCountDown p{
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+#biCountDown .days{
+    color: #e8632c;
+}
+#top-header{
+    height: 40px;
+    background: #e8632c;
+    color: #fff;
+}
+/*#biCountDown div*/
