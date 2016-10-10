@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="wrap-content">
+        <form action="" name="passGen">
+            <input type="text" name="passOutput" placeholder="Generate Password" size="18">
+            <input type="number" name="length" placeholder="Length" size="3" value="6">
+            <input class="waves-effect waves-light btn" type="button" onClick="generatePass(this.form.length.value)" value="Generate Password">
+        </form>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
