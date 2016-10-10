@@ -1,0 +1,21 @@
+#wrap-table{
+    width: 50%;
+}
+table tr{
+    border: 1px solid #ccc;
+}
+table tr:nth-child(odd){
+    background: #ccc;
+}
+body{
+    padding: 10px;
+}
+table tr:nth-child(1){
+    font-weight: bold;
+}
+table td{
+    padding: 0px 5px;
+}
+table tr:not(:first-child) td:nth-child(2){
+    text-align: right;
+}
