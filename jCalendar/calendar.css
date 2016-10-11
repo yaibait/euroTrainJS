@@ -1,10 +1,12 @@
 
 ul {list-style-type: none;}
 body {font-family: Verdana, sans-serif;}
-
+.headerText{
+    text-align: center;
+}
 /* Month header */
 .month {
-    padding: 70px 25px;
+    padding: 20px 25px;
     width: 100%;
     background: #1abc9c;
 }
@@ -63,13 +65,22 @@ body {font-family: Verdana, sans-serif;}
     margin-bottom: 5px;
     font-size:12px;
     color:#777;
+    cursor: pointer;
 }
 
 /* Highlight the "current" day */
 .days li .active {
     padding: 5px;
     background: #1abc9c;
-    color: white !important
+    color: white !important;
+    border-radius: 100%;
+
+}
+
+.days li .current {
+    padding: 5px;
+    border-radius: 100%;
+    border: 1px solid #1abc9c;
 }
 
 #wrap-calendar{
