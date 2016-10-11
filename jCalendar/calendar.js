@@ -1,6 +1,7 @@
 function biCalendar(elId){
     this.wrapIdEl = elId;
     var date = new Date();
+    this.pickedDate = date;
     this.startTargetDate = date;
     this.wrapEl = document.getElementById(elId);
     this.weekdaysTemplate = ["Mon","Tu","We","Th","Fr","Sa","Su"];
@@ -61,7 +62,7 @@ biCalendar.prototype.renderDay = function(date){
     this.currentYearTxt.innerHTML = date.getFullYear();
    if(this.daysCalEl != undefined)
         this.daysCalEl.parentNode.removeChild(this.daysCalEl);
-    var currentDate = date.getDate();
+    var currentDate = new Date().getDate();
     var startDayOfMonth = startMonthDay(date.getMonth(),date.getFullYear(),1);
     
     var daysInCurrentMonth = daysInMonth(date.getMonth(),date.getFullYear());
@@ -71,12 +72,14 @@ biCalendar.prototype.renderDay = function(date){
     this.daysCalEl.className = "days";
     var temp = "";
     var now = new Date();
-    for(var i= 1;i <= (daysInCurrentMonth + startDayOfMonth) ; i++){
-        if(i > startDayOfMonth){
+    let tempDay = 0;
+    for(var i= 1;i <= (daysInCurrentMonth + startDayOfMonth - 1) ; i++){
+        if(i > startDayOfMonth - 1 ){
+            tempDay++;
             if((i - startDayOfMonth) == currentDate && date.getMonth() == now.getMonth()){
-                temp += '<li><span class="current">'+ (i - startDayOfMonth )  +'</span></li>';
+                temp += '<li><span class="current">'+ tempDay  +'</span></li>';
             }else{
-                temp += '<li><span>'+ (i - startDayOfMonth) +'</span></li>';
+                temp += '<li><span>'+ tempDay +'</span></li>';
             }
         }else{
             temp += "<li></li>";
@@ -92,13 +95,33 @@ biCalendar.prototype.renderDay = function(date){
         liEl.addEventListener("click",function(){
             var temp = document.querySelector("#"+that.wrapIdEl + " .days li span.active");
             
-            console.log(temp);
-            this.className += "active";
+            if(temp){
+                if(temp.className.indexOf("current") != -1){
+                    temp.className = "current";
+                }else{
+                    temp.className = "";
+                }
+                
+            }
+
+            this.className += " active";
+            that.pickedDate = new Date(that.startTargetDate.getFullYear(),that.startTargetDate.getMonth(),this.innerHTML);
+            if(typeof that.pickEventCall === "function"){
+                that.pickEventCall();
+            }
         });
     });
 
-
 }
+
+biCalendar.prototype.getDatePicked = function(){
+    return this.pickedDate;
+};
+
+biCalendar.prototype.pickEvent = function(call){
+    this.pickEventCall  = call;
+};
+
 function daysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate();
 };
@@ -107,4 +130,7 @@ function startMonthDay(month,year,day){
     return new Date(year, month, day).getDay();
 }
 
-new biCalendar("wrap-calendar");
+var testCal = new biCalendar("wrap-calendar");
+testCal.pickEvent(function(){
+    console.log(this.getDatePicked());
+});

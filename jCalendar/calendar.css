@@ -4,9 +4,20 @@ body {font-family: Verdana, sans-serif;}
 .headerText{
     text-align: center;
 }
+.prev,.next{
+    cursor: pointer;
+    position: relative;
+    
+}
+.prev{
+    left: 20px;
+}
+.next{
+    right: 20px;
+}
 /* Month header */
 .month {
-    padding: 20px 25px;
+    padding: 20px 0px;
     width: 100%;
     background: #1abc9c;
 }
@@ -67,10 +78,14 @@ body {font-family: Verdana, sans-serif;}
     color:#777;
     cursor: pointer;
 }
-
+.days li span{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+}
 /* Highlight the "current" day */
 .days li .active {
-    padding: 5px;
     background: #1abc9c;
     color: white !important;
     border-radius: 100%;
@@ -78,7 +93,6 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .days li .current {
-    padding: 5px;
     border-radius: 100%;
     border: 1px solid #1abc9c;
 }
