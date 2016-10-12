@@ -1,0 +1,20 @@
+
+#wrap-form{
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+}
+#autoGenPass{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    cursor: pointer;
+    color: #26a69a;
+    z-index: 100;
+}
+.error{
+    color: red;
+    font-size: 11px;
+    padding: 0px;
+}
+input:-webkit-autofill { +label { @extend .active; } } }

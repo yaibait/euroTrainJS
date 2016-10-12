@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Jquery</title>
+     <script src="libs/JQuery/jquery-2.0.3.js"></script>
+     <script src="libs/materialize/js/materialize.min.js"></script>
+     <link rel="stylesheet" href="libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="register.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <div id="wrap-form" class="card">
+    <form action="" id="form" class="row">
+        <div class="input-field col s12">
+            <label for="name">Name</label>
+            <input placeholder="" id="name" name="name" type="text">
+        </div>
+        <div class="input-field col s12">
+            <label for="email">Email</label>
+            <input placeholder="" id="mail" name="email" type="email">
+        </div>
+        <div class="input-field col s12">
+                <label for="pass">Password</label>
+                <input placeholder="" id="pass" name="pass" type="password">   
+                <i id="autoGenPass" title="Random Password" class="small material-icons">https</i>
+        </div>
+        <div class="input-field col s12">
+            <label for="repass">Re-Password</label>
+            <input placeholder="" id="repass" name="repass" type="password">
+        </div>
+        <div class="input-field col s12">
+        
+            <input type="radio" value="Male" id="gennerMale" name="gender" checked="checked" >
+            <label for="gennerMale">Male</label>
+            <input type="radio" value="Female" id="gennerFemale" name="gender">
+            <label for="gennerFemale">Female</label>
+
+        </div>
+        <div class="input-field col s12">
+
+            <select id="national">
+                <option value="1">Vietnam</option>
+                <option value="2">England</option>
+                <option value="3">USA</option>
+                <option value="4">China</option>
+                <option value="5">French</option>
+            </select>
+        </div>
+        <button  type="submit" id="submit" class="waves-effect waves-light btn">Register</button>
+    </form>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>
