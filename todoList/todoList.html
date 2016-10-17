@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Todo List</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="libs/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="libs/mui.min.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="libs/jquery.ui.touch-punch.min.js"></script>
+    
+    <link rel="stylesheet" href="libs/mui.min.css">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="todoList.css">
+</head>
+<body>
+    <div class="wrap-content mui-body">
+        <div id="top-bar" class="mui-appbar">
+        <table width="100%">
+            <tr style="vertical-align:middle;">
+            <td class="mui--appbar-height"></td>
+            <td class="mui--appbar-height" align="right">
+                <i id="add-btn" class="fa fa-plus-circle" aria-hidden="true"></i>
+            </td>
+            </tr>
+        </table>
+        </div>
+        <div id="note-wrap">
+        </div>
+
+    </div>
+        <div id="add_note_modal" class="mui-panel" style="width: 80%; height: 40%; margin: 20% auto; background-color: rgb(255, 255, 255);">
+            <i id="add_note_modal_close" class="fa fa-times-circle" aria-hidden="true"></i>
+            
+                <legend>Add Note</legend>
+                <div class="mui-textfield">
+                    <textarea id="note-area-input" placeholder="Note"></textarea>
+                </div>
+                <button id="save-node-btn" class="mui-btn mui-btn--primary">Save</button>
+        </div>
+    <script src="todoList.js"></script>
+</body>
+</html>

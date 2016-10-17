@@ -1,0 +1,33 @@
+#top-bar{
+    padding: 0px 10px;
+}
+#add-btn{
+    font-size: 30px;
+}
+#add_note_modal{
+    display: none;
+    position: relative;
+}
+#note-area-input{
+    resize: none;
+    height: 80%;
+}
+#save-node-btn{
+    width: 100%;
+}
+#add_note_modal_close{
+    position: absolute;
+    right: 10px;
+    color: #2196F3;
+    font-size: 25px;
+}
+.note-content{
+    display: inline-block;
+    width: 85%;
+    padding: 0px 10px;
+}
+.remove-note-btn{
+    font-size: 20px;
+    color: #2196F3;
+    
+}
