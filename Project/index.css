@@ -1,0 +1,133 @@
+body, html {
+  height: 100%;
+}
+body{
+    overflow: hidden;
+}
+.wrap-content,.wrap-chat-area{
+    height: 100%;
+}
+#chat-content-wrap{
+    position: relative;
+    overflow: hidden;
+    height: 68%;
+}
+
+#chat-content-wrap ul{
+    list-style: none;
+    padding: 0px;
+    height: 100%;
+    overflow: scroll;
+    position: absolute;
+    width: 100%;
+    
+
+}
+#chat-content-wrap ul li{
+    padding: 5px 10px;
+    border-radius: 40px;
+}
+
+#wrap-input-chat{
+    background-color: #fff;
+}
+#chat-content-wrap ul li p{
+    padding: 10px;
+    border-radius: 30px;
+    /*min-width: 30px;*/
+}
+#friend-info-top{
+    visibility: hidden;
+}
+#chat-content-wrap ul .me{
+    text-align: right;
+}
+#chat-content-wrap ul .me > p{
+    background: #1cba48;
+    color: #fff;
+    display: inline-block;
+}
+
+#chat-content-wrap ul .join{
+    text-align: center;
+}
+#chat-content-wrap ul .join > p{
+    background: #2196F3;
+    color: #fff;
+    display: inline-block;
+}
+
+#chat-content-wrap ul .out{
+    text-align: center;
+}
+#chat-content-wrap ul .out > p{
+    background: red;
+    color: #fff;
+    display: inline-block;
+}
+
+#chat-content-wrap ul .you{
+    text-align: left;
+    
+}
+#chat-content-wrap ul .you > p{
+    background: #e5e5ea;
+    color: #323233;
+    display: inline-block;
+}
+
+#chat-input{
+    resize: none;
+    min-height: 35px;
+}
+#exitBtn{
+    font-size: 30px;
+    display: none;
+}
+.btn{
+    cursor: pointer;
+    color: #fff;
+}
+.chat-avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+#topBar{
+    background-color: #2196F3;
+    color: #fff;
+}
+#topBar td{
+    width: 33.333333%;
+}
+
+#loginDialog button{
+    margin: 10px 0px;
+    width: 100%;
+}
+#friend-avatar{
+    width: 25px;
+    height: 25px;
+}
+#friend-name{
+    padding: 0px;
+    margin: 0px;
+    font-size: 10px;
+
+}
+#findFriendDialog .mdl-dialog__content{
+    text-align: center;
+}
+#findFriendDialog .mdl-dialog__content .sex-select .fa{
+    font-size: 25px;
+    color: #2196F3;
+}
+#findFriendDialog .mdl-dialog__content .sex-select{
+    margin-bottom: 20px;
+}
+
+#loadingDialog{
+    text-align: center;
+    background: transparent;
+    color: transparent;
+}

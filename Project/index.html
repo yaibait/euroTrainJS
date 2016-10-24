@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Chat</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="libs/jQuery/jquery-3.1.1.min.js"></script>
+    <!--<script src="libs/mui.min.js"></script>-->
+    <!--<script src="libs/jquery-ui.js"></script>-->
+    <!--<script src="libs/jquery.ui.touch-punch.min.js"></script>-->
+    <script src="libs/mdl/material.min.js"></script>
+
+    <!--<link rel="stylesheet" href="libs/jquery-ui.css">-->
+    <link rel="stylesheet" href="libs/mdl/material.min.css">
+    <!--<link rel="stylesheet" href="libs/mui.min.css">-->
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="topBar" class="">
+        <div class="mui-container">
+              <table width="100%">
+                <tr style="vertical-align:middle;">
+                <td class="mui--appbar-height">
+                    <img id="user-avatar" class="chat-avatar" src="img/avatar.png" alt="">
+                </td>
+                <td id="friend-info-top" class="mui--appbar-height" align="center">
+                    <img id="friend-avatar" class="chat-avatar" src="img/avatar.png" alt="">
+                    <p id="friend-name">Bình</p>
+                </td>
+                <td class="mui--appbar-height" align="right">
+                    <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--icon btn">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>                    
+                    <button id="exitBtn" class="mdl-button mdl-js-button mdl-button--icon btn">
+                        <i class="fa fa-times-circle-o" aria-hidden="true"></i> 
+                    </button>
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="wrap-content ">
+        <!--<button id="loginBtn" class="mui-btn mui-btn--raised">
+            Login
+        </button>-->
+
+        <div class="wrap-chat-area mui-panel">
+            <div id="chat-content-wrap">
+                <ul id="chat-content-render">
+                    <li class="mess me">
+                        <p>chào</p>
+                    </li>
+                    <li class="mess me">
+                        <p>2</p>
+                    </li>
+                    <li class="mess you">
+                        <p>2</p>
+                    </li>
+                </ul>
+            </div>
+            <form id="wrap-input-chat" action="">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <textarea id="chat-input" name="chat-input" class="mdl-textfield__input" disabled></textarea>
+                    <label class="mdl-textfield__label" for="chat-input">Nhập nội dung</label>
+                </div>
+                <button id="sendBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+                <!--<button id="testBtn">Search</button>-->
+            </form>
+        </div>
+    </div>
+
+<!--login -->
+<dialog id="loginDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Đăng nhập</h4>
+    <div class="mdl-dialog__content">
+      <button id="facebookLoginBtn" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          <i class="fa fa-facebook-official" aria-hidden="true"></i>
+          Facebook
+      </button>
+
+      <button id="googleLoginBtn" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+          <i class="fa fa-google" aria-hidden="true"></i>
+          Google
+      </button>
+    </div>
+  </dialog>
+
+
+<dialog id="outDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Thông báo</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Bạn có thực sự muốn thoát không ?
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button acceptBtn">Có</button>
+      <button type="button" class="mdl-button closeBtn">Không</button>
+    </div>
+  </dialog>
+
+<!--<dialog id="outDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Thông báo</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Bạn có thực sự muốn thoát không ?
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button">Có</button>
+      <button type="button" class="mdl-button close">Không</button>
+    </div>
+  </dialog>-->
+
+    <dialog id="findFriendDialog" class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Tìm bạn</h4>
+        <div class="mdl-dialog__content">
+            <div class="sex-select">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="male" checked>
+                    <span class="mdl-radio__label">
+                        <i class="fa fa-male" aria-hidden="true"></i>
+                    </span>
+                </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="female">
+                    <span class="mdl-radio__label">
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                    </span>
+                </label>
+
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                    <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="random">
+                    <span class="mdl-radio__label">
+                        <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+                    </span>
+                </label>                
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </dialog>
+
+    <dialog id="userOptionDialog" class="mdl-dialog">
+            <h4 class="mdl-dialog__title">Cài đặt</h4>
+            <div class="mdl-dialog__content">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="optionName">
+                    <label class="mdl-textfield__label" for="optionName">Tên hiển thị</label>
+                </div>
+                <div class="sex-select">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="male">
+                        <span class="mdl-radio__label">
+                            <i class="fa fa-male" aria-hidden="true"></i>
+                        </span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="female">
+                        <span class="mdl-radio__label">
+                            <i class="fa fa-female" aria-hidden="true"></i>
+                        </span>
+                    </label>
+
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                        <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="random" checked>
+                        <span class="mdl-radio__label">
+                            <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+                        </span>
+                    </label>                
+                </div>
+                
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button">Lưu</button>
+                <button type="button" class="mdl-button">Thoát</button>
+            </div>
+        </dialog>
+
+    <dialog id="loadingDialog" >
+        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+    </dialog>
+
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAHzBDTrvKlBD_hI0tk4C54O-4zaIL9b0A",
+        authDomain: "chat-e393e.firebaseapp.com",
+        databaseURL: "https://chat-e393e.firebaseio.com",
+        storageBucket: "chat-e393e.appspot.com",
+        messagingSenderId: "194030071087"
+    };
+    
+    firebase.initializeApp(config);
+    </script>    
+    <script src="js/app.js"></script>
+</body>
+</html>
