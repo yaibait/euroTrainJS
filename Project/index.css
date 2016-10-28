@@ -1,16 +1,26 @@
+html{
+    position: fixed;
+    overflow: hidden;
+}
 body, html {
   height: 100%;
+  position: absolute;
 }
 body{
     overflow: hidden;
+    -webkit-overflow-scrolling: auto;
 }
 .wrap-content,.wrap-chat-area{
     height: 100%;
 }
+.wrap-content{
+    width: 90%;
+    margin: 0 auto;
+}
 #chat-content-wrap{
     position: relative;
     overflow: hidden;
-    height: 68%;
+    height: calc(100% - 122px);
 }
 
 #chat-content-wrap ul{
@@ -20,8 +30,12 @@ body{
     overflow: scroll;
     position: absolute;
     width: 100%;
-    
-
+}
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: 0.2em;
 }
 #chat-content-wrap ul li{
     padding: 5px 10px;
@@ -30,14 +44,44 @@ body{
 
 #wrap-input-chat{
     background-color: #fff;
+    /*overflow: hidden;*/
+}
+.wrap-input-text{
+    width: 90%;
+    float: left;
+}
+#findFriendDialogClose{
+    float: right;
+}
+#mediaCapture{
+    display: none;
+}
+.wrap-input-text > .mdl-textfield{
+    width: 100%;
+}
+.wrap-sendBtn{
+    width: 10%;
+    padding: 20px 0px;
+    float: left;
+}
+#sendBtn{
+    min-height: 44px;
+    width: 100%;
+    min-width: auto;
 }
 #chat-content-wrap ul li p{
     padding: 10px;
     border-radius: 30px;
     /*min-width: 30px;*/
 }
-#friend-info-top{
-    visibility: hidden;
+#searchBtn .fa{
+    font-size: 20px;
+}
+#searchBtn span{
+    font-size: 13px;
+}
+#friend-info-wrap{
+    display: none;
 }
 #chat-content-wrap ul .me{
     text-align: right;
@@ -47,7 +91,11 @@ body{
     color: #fff;
     display: inline-block;
 }
+#chat-content-wrap ul .image-mess > p{
 
+    color: #fff;
+    display: inline-block;
+}
 #chat-content-wrap ul .join{
     text-align: center;
 }
@@ -105,6 +153,15 @@ body{
     margin: 10px 0px;
     width: 100%;
 }
+#friendInfoDialog .mdl-dialog__content{
+    text-align: center;
+}
+#friendInfoDialog_avatar{
+    width: 150px;
+}
+#friendInfoDialog_sex{
+    font-size: 30px;
+}
 #friend-avatar{
     width: 25px;
     height: 25px;
@@ -130,4 +187,49 @@ body{
     text-align: center;
     background: transparent;
     color: transparent;
+}
+#chat-content-render{
+    margin-bottom: 0px; 
+    top: 0px;
+    bottom: 0px;
+    
+}
+#listEmoji{
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+#listEmoji li{
+    display: inline-block;
+    padding: 8px;
+}
+.wrap-input-text{
+    position: relative;
+}
+#emojiBtn{
+    position: absolute;
+    top: 24px;
+    color: #ccc;
+    right: 5px;
+}
+@media screen and (max-width: 480px) {
+    .wrap-input-text{
+        width: 80%;
+    }
+    .wrap-sendBtn{
+        width: 20%;
+    }
+}
+
+@media screen and (max-height : 568px){
+    #listEmoji{
+        height: 150px;
+        overflow: scroll;
+    }
+}
+@media screen and (max-height : 320px){
+    #listEmoji{
+        height: 100px;
+        overflow: scroll;
+    }
 }

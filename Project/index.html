@@ -6,17 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="libs/jQuery/jquery-3.1.1.min.js"></script>
-    <!--<script src="libs/mui.min.js"></script>-->
-    <!--<script src="libs/jquery-ui.js"></script>-->
-    <!--<script src="libs/jquery.ui.touch-punch.min.js"></script>-->
-    <script src="libs/mdl/material.min.js"></script>
+    <!--[if IE]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.2.0/es5-shim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <![endif]-->
 
-    <!--<link rel="stylesheet" href="libs/jquery-ui.css">-->
+    <script src="libs/jQuery/jquery-3.1.1.min.js"></script>
+    <!--<script src="libs/polyfill/dialog-polyfill.js"></script>-->
+    <script src="libs/mdl/material.min.js"></script>
+    <script src="libs/emojify/js/emojify.min.js"></script>
+    <script src="libs/Dialog/mdl-jquery-modal-dialog.js"></script>
+    <!--<link rel="stylesheet" href="libs/polyfill/dialog-polyfill.css">-->
+    <script src="libs/Dialog/bi-dialog.js"></script>
+
+    <link rel="stylesheet" href="libs/Dialog/bi-dialog.css">
     <link rel="stylesheet" href="libs/mdl/material.min.css">
-    <!--<link rel="stylesheet" href="libs/mui.min.css">-->
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="libs/Dialog/mdl-jquery-modal-dialog.css">    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="index.css">
+
 </head>
 <body>
     <div id="topBar" class="">
@@ -27,13 +38,17 @@
                     <img id="user-avatar" class="chat-avatar" src="img/avatar.png" alt="">
                 </td>
                 <td id="friend-info-top" class="mui--appbar-height" align="center">
-                    <img id="friend-avatar" class="chat-avatar" src="img/avatar.png" alt="">
-                    <p id="friend-name">Bình</p>
-                </td>
-                <td class="mui--appbar-height" align="right">
-                    <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--icon btn">
+                    <div id="friend-info-wrap">
+                        <img id="friend-avatar" class="chat-avatar" src="img/avatar.png" alt="">
+                        <p id="friend-name">Bình</p>
+                    </div>
+                    
+                    <button id="searchBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>                    
+                        <span>Tìm bạn chat</span>
+                    </button>
+                </td>
+                <td class="mui--appbar-height" align="right">                    
                     <button id="exitBtn" class="mdl-button mdl-js-button mdl-button--icon btn">
                         <i class="fa fa-times-circle-o" aria-hidden="true"></i> 
                     </button>
@@ -47,10 +62,10 @@
             Login
         </button>-->
 
-        <div class="wrap-chat-area mui-panel">
+        <div class="wrap-chat-area">
             <div id="chat-content-wrap">
                 <ul id="chat-content-render">
-                    <li class="mess me">
+                    <!--<li class="mess me">
                         <p>chào</p>
                     </li>
                     <li class="mess me">
@@ -58,24 +73,36 @@
                     </li>
                     <li class="mess you">
                         <p>2</p>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
+
             <form id="wrap-input-chat" action="">
-                <div class="mdl-textfield mdl-js-textfield">
-                    <textarea id="chat-input" name="chat-input" class="mdl-textfield__input" disabled></textarea>
-                    <label class="mdl-textfield__label" for="chat-input">Nhập nội dung</label>
+                <div class="wrap-input-text">
+                    <div class="mdl-textfield mdl-js-textfield ">
+                        <textarea maxlength="250" id="chat-input" name="chat-input" rows= "1" class="mdl-textfield__input" disabled></textarea>
+                        <label class="mdl-textfield__label" for="chat-input">Nhập nội dung</label>
+                    </div>
+                    <button id="emojiBtn" class="mdl-button mdl-js-button mdl-button--icon btn" disabled>
+                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <button id="sendBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                </button>
-                <!--<button id="testBtn">Search</button>-->
+                <div class="wrap-sendBtn">
+                    <button id="sendBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" disabled>
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!--<input id="mediaCapture" type="file" accept="image/*,capture=camera">-->
+                <!--<button id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+                    <i class="material-icons">image</i>
+                </button>-->
             </form>
+            <ul id="listEmoji"></ul>
         </div>
     </div>
 
 <!--login -->
-<dialog id="loginDialog" class="mdl-dialog">
+<div id="loginDialog" class="mdl-dialog">
     <h4 class="mdl-dialog__title">Đăng nhập</h4>
     <div class="mdl-dialog__content">
       <button id="facebookLoginBtn" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
@@ -88,10 +115,10 @@
           Google
       </button>
     </div>
-  </dialog>
+  </div>
 
 
-<dialog id="outDialog" class="mdl-dialog">
+<div id="outDialog" class="mdl-dialog">
     <h4 class="mdl-dialog__title">Thông báo</h4>
     <div class="mdl-dialog__content">
       <p>
@@ -102,74 +129,64 @@
       <button type="button" class="mdl-button acceptBtn">Có</button>
       <button type="button" class="mdl-button closeBtn">Không</button>
     </div>
-  </dialog>
+  </div>
 
-<!--<dialog id="outDialog" class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Thông báo</h4>
-    <div class="mdl-dialog__content">
-      <p>
-        Bạn có thực sự muốn thoát không ?
-      </p>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button">Có</button>
-      <button type="button" class="mdl-button close">Không</button>
-    </div>
-  </dialog>-->
-
-    <dialog id="findFriendDialog" class="mdl-dialog">
+    <div id="findFriendDialog" class="mdl-dialog">
+        <button id="findFriendDialogClose" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
         <h4 class="mdl-dialog__title">Tìm bạn</h4>
         <div class="mdl-dialog__content">
-            <div class="sex-select">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="male" checked>
+            <!--<div class="sex-select">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="findSex-1">
+                    <input type="radio" id="findSex-1" class="mdl-radio__button" name="findSex" value="1" checked>
                     <span class="mdl-radio__label">
                         <i class="fa fa-male" aria-hidden="true"></i>
                     </span>
                 </label>
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="female">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="findSex-2">
+                    <input type="radio" id="findSex-2" class="mdl-radio__button" name="findSex" value="2">
                     <span class="mdl-radio__label">
                         <i class="fa fa-female" aria-hidden="true"></i>
                     </span>
                 </label>
 
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                    <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="random">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="findSex-3">
+                    <input type="radio" id="findSex-3" class="mdl-radio__button" name="findSex" value="3">
                     <span class="mdl-radio__label">
                         <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
                     </span>
                 </label>                
-            </div>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            </div>-->
+            <button class="searchPopupBtn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </button>
         </div>
-    </dialog>
+    </div>
 
-    <dialog id="userOptionDialog" class="mdl-dialog">
+    <div id="userOptionDialog" class="mdl-dialog">
             <h4 class="mdl-dialog__title">Cài đặt</h4>
             <div class="mdl-dialog__content">
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="text" id="optionName">
+                    <input class="mdl-textfield__input" type="text" id="optionName" value="B">
                     <label class="mdl-textfield__label" for="optionName">Tên hiển thị</label>
                 </div>
-                <div class="sex-select">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="male">
+                <div id="sex-selectOption">
+                    <label id="binhTest" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="sexOption-1">
+                        <input type="radio" id="sexOption-1" class="mdl-radio__button" name="sex" value="1">
                         <span class="mdl-radio__label">
                             <i class="fa fa-male" aria-hidden="true"></i>
                         </span>
                     </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="female">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="sexOption-2">
+                        <input type="radio" id="sexOption-2" class="mdl-radio__button" name="sex" value="2">
                         <span class="mdl-radio__label">
                             <i class="fa fa-female" aria-hidden="true"></i>
                         </span>
                     </label>
 
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                        <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="random" checked>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="sexOption-3">
+                        <input type="radio" id="sexOption-3" class="mdl-radio__button" name="sex" value="3" checked>
                         <span class="mdl-radio__label">
                             <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
                         </span>
@@ -178,14 +195,29 @@
                 
             </div>
             <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button">Lưu</button>
-                <button type="button" class="mdl-button">Thoát</button>
+                <button type="button" class="mdl-button saveBtn">Lưu</button>
+                <button type="button" class="mdl-button closeBtn">Thoát</button>
             </div>
-        </dialog>
+        </div>
 
-    <dialog id="loadingDialog" >
-        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
-    </dialog>
+    <div id="friendInfoDialog" class="mdl-dialog">
+            <h4 class="mdl-dialog__title">Thông tin</h4>
+            <div class="mdl-dialog__content">
+                <img id="friendInfoDialog_avatar" src="">
+                <p id="friendInfoDialog_name"></p>
+                <div id="friendInfoDialog_sex">
+                    <i class="fa" aria-hidden="true"></i>           
+                </div>
+                <div id="friendInfoDialog_sex_text" class="mdl-tooltip" for="friendInfoDialog_sex">
+                    
+                </div>
+                                
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button closeBtn">Thoát</button>
+            </div>
+        </div>
+
 
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
     <script>
@@ -199,6 +231,19 @@
     };
     
     firebase.initializeApp(config);
+
+    emojify.setConfig({
+    only_crawl_id    : null,            // Use to restrict where emojify.js applies
+    img_dir          : 'libs/emojify/images/basic',  // Directory for emoji images
+        ignored_tags     : {                // Ignore the following tags
+            'SCRIPT'  : 1,
+            'TEXTAREA': 1,
+            'A'       : 1,
+            'PRE'     : 1,
+            'CODE'    : 1
+        }
+    });
+    emojify.run();
     </script>    
     <script src="js/app.js"></script>
 </body>
