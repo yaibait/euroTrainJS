@@ -168,29 +168,36 @@
             });
         }
         facebookLogin(){
+            console.log("facebookLogin");
             var provider = new firebase.auth.FacebookAuthProvider();
             provider.setCustomParameters({
             'display': 'popup'
             });
-            firebase.auth().signInWithPopup(provider).then(function(result) {
+            firebase.auth().signInWithPopup(provider).then((result) => {
+                
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             var token = result.credential.accessToken;
             // The signed-in user info.
+            
             this.user = result.user;
+            console.log(result);
+            console.log(this.user);
+
             if (this.user) { // User is signed in!
                 var profilePicUrl = this.user.photoURL; // Only change these two lines!
                 $("#user-avatar").attr("src",profilePicUrl);
                 this.createUserInfo(this.user);
             }
             
-                            hideLoading();
+            hideLoading();
             if(this.loginDialog.open)
                             this.loginDialog.close();
 
-            }).catch(function(error) {
+            }).catch((error) => {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
+            console.log(errorMessage);
             // The email of the user's account used.
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
