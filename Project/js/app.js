@@ -14,6 +14,9 @@
                 this.haveFriend = false;
                 this.emojiIcon = false;
                 this.roomRef = {};
+                this.messAudio = new Audio('sounds/mess.mp3');
+                this.messDisconnect = new Audio('sounds/disconect.mp3');
+                this.messConnect = new Audio('sounds/connect.mp3');
                 this.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
                 // firebase
                 this.storage = firebase.storage();
@@ -118,6 +121,18 @@
                 this.initEvent();
                 this.createEmoji();
         }
+        messCommingSound(){
+            this.messAudio.pause();
+            this.messAudio.play();
+        }
+        disconnectRoomSound(){
+            this.messDisconnect.pause();
+            this.messDisconnect.play();
+        }
+        connectRoomSound(){
+            this.messConnect.pause();
+            this.messConnect.play();
+        }
         createEmoji(){
             var listSmileEl = $("#listEmoji");
                 listSmile.forEach(function(text){
@@ -132,7 +147,7 @@
                   var  text = $("#chat-input").val() +" "+ em;
                   $("#chat-input").parent().addClass('is-dirty')
                   $("#chat-input").val(text);
-                  
+        
               });                  
         }
         googleLogin(){
@@ -399,6 +414,8 @@
                         console.error('Error join to room Firebase Database', error);
                     });
                 }
+                // clear old mess
+                this.chatPlace.empty();
                 
             });
         }
@@ -483,6 +500,7 @@
             // updates['/rooms/' + romId + '/user_two'] = this.user.uid;
             // updates['/rooms/' + romId + '/status'] = 1;
             firebase.database().ref('rooms/'+this.room.id).update(updates).then(() => {
+                
                 this.loadMessager();
                 this.listenRoomState();
                 this.startConversationAction();
@@ -569,6 +587,7 @@
                 this.findFriendDialog.close();
             
                 hideLoading();
+            this.connectRoomSound();
         }
         stopConversationAction(){
             $("#exitBtn").hide();
@@ -581,6 +600,7 @@
             this.showHideEmoji();
             if(this.inRoom)
                 firebase.database().ref("rooms/"+this.room.id).remove();
+            this.disconnectRoomSound();
             this.inRoom = false;
             this.haveFriend = false;
             console.log("cancel");
@@ -638,14 +658,17 @@
             return $(temp).find("img");            
         }
         aMessengeView(_mess,_sender){
+            var mess = escapeHtml(_mess);
             var temp = '<li class="mess '+ _sender+'">'+
-                            '<p>'+ _mess +'</p>'+
+                            '<p>'+ mess +'</p>'+
                         '</li>';
             var objEl = $(temp);
             this.chatPlace.append(objEl);
             emojify.run(objEl[0]);
             // scroll to bottom
             this.chatPlace[0].scrollTop = this.chatPlace[0].scrollHeight;
+            if(_sender == "you")
+                this.messCommingSound();
         }
         messageRender(_messView){
             
@@ -655,60 +678,9 @@
 
     var chatApp = new RandomChatApp();
 
-    $("#loginBtn").on("click",function(){
-        // firebase.auth().signInWithPopup(provider).then(function(result) {
-        // // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        // var token = result.credential.accessToken;
-        // // The signed-in user info.
-        // var user = result.user;
-        // // ...
-        // }).catch(function(error) {
-        // // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // // The email of the user's account used.
-        // var email = error.email;
-        // // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
-        // // ...
-        // });
-    });
-
-    
-
-
-    
-
-    // go out chat 
-    // $("#exitBtn").on("click",function(){
-    //     outDialog.showModal();
-    // });
-
-
-
-    // firebase google login
-
-    function googleLogin(){
-        
+    window.onbeforeunload = function() {
+        return "Bạn có thực sự muốn thoát không ?";
     }
-
-    // check login
-
-    // function checkLogin(){
-    //     firebase.auth().onAuthStateChanged(function(user) {
-    //         if (user) {
-    //             // User is signed in.
-    //             var profilePicUrl = user.photoURL; // Only change these two lines!
-    //             var userName = user.displayName;   // Only change these two lines!
-    //             console.log(user);
-    //             $("#user-avatar").attr("src",profilePicUrl);
-    //         } else {
-    //             // No user is signed in.
-    //         }
-    //     });
-    // };
-
-    //checkLogin();
 
 // })();
 
