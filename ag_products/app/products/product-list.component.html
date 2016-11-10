@@ -1,0 +1,23 @@
+<div>
+    {{pageTitle}}
+</div>
+<table>
+    <tr>
+        <th><button (click)="showHideImageEvent()" >Show Image</button></th>
+        <th>Product</th>
+        <th>Code</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>5 Star Rating</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td><img *ngIf="showImages" [src]="product.imageUrl" alt=""></td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productCode }}</td>
+        <td>{{ product.releaseDate }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+            <ai-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></ai-star>
+        </td>
+    </tr>
+</table>
