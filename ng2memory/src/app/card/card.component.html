@@ -1,0 +1,4 @@
+ <div class="card" (click)="openCardEvent()" [@cardState]="card.state" (@cardState.start)="flipStart()" (@cardState.done)="flipDone($event)">
+         <i class="fa {{card.icon}}" aria-hidden="true"></i>
+ </div>
+ 

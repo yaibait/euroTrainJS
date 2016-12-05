@@ -1,0 +1,32 @@
+.card{
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
+    margin: 5px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+.card .font,.card .back{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    text-align: center;
+    width: 100px;
+
+}
+.card .font{
+    z-index: 10;
+}
+.card .back{
+    z-index: 0;
+}
+.card i.fa{
+    font-size: 60px;
+    line-height: 150px;
+    color: deepskyblue;
+}

@@ -1,0 +1,9 @@
+<h1>
+  {{title}}
+</h1>
+<div class="board" *ngIf="listCard">
+  <span *ngFor="let card of listCard">
+    <app-card (cardChangeState)="cardChangeEvent($event)" [setCard]="card"></app-card>
+  </span>
+</div>
+
